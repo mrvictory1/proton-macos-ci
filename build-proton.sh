@@ -4,7 +4,7 @@ DEPTH="--depth=1"
 fi
 
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
-brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libnghttp2 lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget
+brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libffi libnghttp2 lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget
 echo "1" > .brew-deps
 fi
 
