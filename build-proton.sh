@@ -8,7 +8,7 @@ brew uninstall perl
 fi
 
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
-brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libffi libnghttp2 lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget zlib
+brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libffi libnghttp2 libvpx lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget zlib
 echo "1" > .brew-deps
 fi
 
