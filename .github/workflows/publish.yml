@@ -1,0 +1,11 @@
+name: publish
+run-name: Create release
+on: [push]
+jobs:
+  publish:
+    runs-on: macos-15-intel
+    steps:
+      - uses: actions/checkout@v6
+      - run: ./gh-cleanup.sh
+      - run: ./build-proton.sh
+      - run: ./gh-publish.sh
