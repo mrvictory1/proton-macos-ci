@@ -38,6 +38,9 @@ cd Proton
 git submodule set-url dxvk https://github.com/Gcenx/DXVK-macOS
 git submodule set-branch --branch 1.10.x dxvk
 git submodule update --init --recursive $DEPTH
+cd dxvk
+git checkout 1.10.x
+cd ..
 git am ../patches/repo/*
 
 to_patch=("piper" "wine")
