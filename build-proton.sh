@@ -4,7 +4,7 @@ DEPTH="--depth=1"
 # GitHub Actions runner has a different version of perl installed without json module.
 # Perl json module is required by vkd3d.
 # macOS provided perl does not need this step.
-perlbrew switch-off
+brew uninstall perl
 fi
 
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
