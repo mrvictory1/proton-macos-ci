@@ -1,0 +1,4 @@
+30c30
+< int speechPlayer_synthesize(speechPlayer_handle_t playerHandle, unsigned int sampleCount, sample* sampleBuf); 
+---
+> int speechPlayer_synthesize(speechPlayer_handle_t playerHandle, unsigned int sampleCount, spsample::sample* sampleBuf); 

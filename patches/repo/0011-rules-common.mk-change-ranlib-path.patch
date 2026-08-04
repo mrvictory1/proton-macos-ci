@@ -1,0 +1,36 @@
+
+
+Date: Tue, 14 Jul 2026 11:49:45 +0300
+Subject: [PATCH 11/42] rules-common.mk: change ranlib path
+
+---
+ make/rules-common.mk | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 720305fe..2ff87491 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -115,8 +115,8 @@ $(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-rpath-link=$$($$(
+ # of crates build host-native bits via build.rs.
+ 
+ # notes for macOS:
+-# * C, C++ compiler names and ar are replaced with cc, g++ and ar. The names of
+-# Xcode supplied utilities have no long form names.
++# * C, C++ compiler names, ar and ranlib are replaced with cc, g++, ar, ranlib.
++# The names of Xcode supplied utilities have no long form names.
+ # * .pc files reside in Homebrew managed /usr/local/lib directory.
+ # * libffi and zlib packages of Homebrew are "keg-only" which means they are 
+ # not installed in /usr/local. They have to be manually included.
+@@ -127,7 +127,7 @@ $(2)_$(3)_ENV = \
+     CCACHE_BASEDIR="$$(CCACHE_BASEDIR)" \
+     STRIP="$$(STRIP)" \
+     AR="ar" \
+-    RANLIB="$$($(3)-$(4)_TARGET)-ranlib" \
++    RANLIB="ranlib" \
+     CC="cc" \
+     CXX="g++" \
+     LD="$$($(3)-$(4)_TARGET)-ld" \
+-- 
+2.50.1 (Apple Git-155)
+

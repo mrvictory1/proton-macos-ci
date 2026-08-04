@@ -1,0 +1,27 @@
+
+
+Date: Wed, 1 Jul 2026 14:37:20 +0300
+Subject: [PATCH 03/13] Don't load malloc.h on macOS ntdll loader.c
+
+---
+ dlls/ntdll/unix/loader.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/dlls/ntdll/unix/loader.c b/dlls/ntdll/unix/loader.c
+index 4deeac79c28..ae68f38909b 100644
+--- a/dlls/ntdll/unix/loader.c
++++ b/dlls/ntdll/unix/loader.c
+@@ -38,7 +38,10 @@
+ #include <sys/mman.h>
+ #include <sys/wait.h>
+ #include <unistd.h>
++#ifndef __APPLE__
++// macOS should use just stdlib.h
+ #include <malloc.h>
++#endif
+ #include <dlfcn.h>
+ #ifdef HAVE_PWD_H
+ # include <pwd.h>
+-- 
+2.39.5 (Apple Git-154)
+

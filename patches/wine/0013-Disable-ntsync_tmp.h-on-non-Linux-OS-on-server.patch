@@ -1,0 +1,30 @@
+
+
+Date: Sat, 4 Jul 2026 08:09:19 +0300
+Subject: [PATCH 13/13] Disable ntsync_tmp.h on non-Linux OS (on server/)
+
+---
+ server/ntsync_tmp.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/server/ntsync_tmp.h b/server/ntsync_tmp.h
+index 6d06793512b..31983c2f7f6 100644
+--- a/server/ntsync_tmp.h
++++ b/server/ntsync_tmp.h
+@@ -4,7 +4,7 @@
+  *
+  * Copyright (C) 2021-2022 Elizabeth Figura <zfigura@codeweavers.com>
+  */
+-
++#ifdef __linux__
+ #ifndef __LINUX_NTSYNC_H
+ #define __LINUX_NTSYNC_H
+ 
+@@ -57,3 +57,4 @@ struct ntsync_wait_args {
+ #define NTSYNC_IOC_EVENT_READ		_IOR ('N', 0x8d, struct ntsync_event_args)
+ 
+ #endif
++#endif // __linux
+-- 
+2.39.5 (Apple Git-154)
+

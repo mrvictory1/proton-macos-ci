@@ -1,0 +1,26 @@
+
+
+Date: Tue, 14 Jul 2026 00:00:48 +0300
+Subject: [PATCH 04/42] Makefile.in: use afdko mateotf instead of afdko
+ makeotfexe
+
+---
+ Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index bb36849d..836227a8 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1106,7 +1106,7 @@ $(FONTS_OBJ)/source-han/%.ttf: $$(%.ttf_CIDFONT) $$(%.ttf_FEATURES) $$(%.ttf_SEQ
+ 	mkdir -p $(FONTS_OBJ)/source-han
+ 	# Do not immediately create the target file, so that make is interrupted
+ 	# it will restart again
+-	afdko makeotfexe -f $($(notdir $@)_CIDFONT) -omitMacNames -ff $($(notdir $@)_FEATURES) \
++	afdko makeotf -f $($(notdir $@)_CIDFONT) -omitMacNames -ff $($(notdir $@)_FEATURES) \
+ 		-lic ADOBE -mf $($(notdir $@)_MENUNAMEDB) -r -nS -cs 25 -ch $($(notdir $@)_UNISOURCE) \
+ 		-ci $($(notdir $@)_SEQUENCES) -o $@.tmp
+ 	afdko tx -cff +S -no_futile $($(notdir $@)_CIDFONT) $@.cff
+-- 
+2.50.1 (Apple Git-155)
+

@@ -1,0 +1,34 @@
+
+
+Date: Thu, 30 Jul 2026 13:22:49 +0300
+Subject: [PATCH 37/42] rules-common.mk: always use lld-link for wine
+
+---
+ make/rules-common.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 899b0946..cb7083af 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -155,7 +155,7 @@ $(2)_$(3)_ENV += \
+     i386_RANLIB="$$(i386-windows_TARGET)-ranlib" \
+     i386_CC="$$(i386-windows_TARGET)-gcc" \
+     i386_CXX="$$(i386-windows_TARGET)-g++" \
+-    i386_LD="$$(i386-windows_TARGET)-ld" \
++    i386_LD="lld-link" \
+     i386_CFLAGS="$$($(2)_i386_INCFLAGS) $$($(2)_CFLAGS) $$(i386_CFLAGS) $$(CFLAGS)" \
+     i386_CPPFLAGS="$$($(2)_i386_INCFLAGS) $$($(2)_CFLAGS) $$(i386_CFLAGS) $$(CFLAGS)" \
+     i386_CXXFLAGS="$$($(2)_i386_INCFLAGS) -std=c++17 $$($(2)_CFLAGS) $$(i386_CFLAGS) $$(CFLAGS)" \
+@@ -165,7 +165,7 @@ $(2)_$(3)_ENV += \
+     x86_64_RANLIB="$$(x86_64-windows_TARGET)-ranlib" \
+     x86_64_CC="$$(x86_64-windows_TARGET)-gcc" \
+     x86_64_CXX="$$(x86_64-windows_TARGET)-g++" \
+-    x86_64_LD="$$(x86_64-windows_TARGET)-ld" \
++    x86_64_LD="lld-link" \
+     x86_64_CFLAGS="$$($(2)_x86_64_INCFLAGS) $$($(2)_CFLAGS) $$(x86_64_CFLAGS) $$(CFLAGS)" \
+     x86_64_CPPFLAGS="$$($(2)_x86_64_INCFLAGS) $$($(2)_CFLAGS) $$(x86_64_CFLAGS) $$(CFLAGS)" \
+     x86_64_CXXFLAGS="$$($(2)_x86_64_INCFLAGS) -std=c++17 $$($(2)_CFLAGS) $$(x86_64_CFLAGS) $$(CFLAGS)" \
+-- 
+2.50.1 (Apple Git-155)
+

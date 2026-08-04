@@ -1,0 +1,40 @@
+
+
+Date: Thu, 30 Jul 2026 13:16:30 +0300
+Subject: [PATCH 32/42] Makefile.in: copy dependencies for macOS.
+
+These deps are not included by macOS and also can't be found by wine in the default Homebrew directory.
+---
+ Makefile.in | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/Makefile.in b/Makefile.in
+index 56c853c6..e89f0924 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1329,6 +1329,22 @@ $(OVR_aarch64_DIST): $(SRCDIR)/openvr/bin/win64/openvr_api.dll | $(DST_DIR)
+ all-dist: $(OVR_aarch64_DIST)
+ endif
+ 
++##
++## macos_deps
++##
++
++MACOS_DEPS_DIST := $(DST_DIR)/lib/wine/x86_64-unix
++BREW_LIB := /usr/local/lib
++
++$(OBJ)/.macos_deps-x86_64-dist: $(OBJ)/.wine-x86_64-post-build
++	cp $(BREW_LIB)/libfreetype.6.dylib $(MACOS_DEPS_DIST)
++	cp $(BREW_LIB)/libMoltenVK.dylib $(MACOS_DEPS_DIST)
++	cp $(BREW_LIB)/libgnutls.30.dylib $(MACOS_DEPS_DIST)
++	cp $(BREW_LIB)/libgmp.10.dylib $(MACOS_DEPS_DIST)
++	touch $@
++
++all-dist: $(OBJ)/.macos_deps-x86_64-dist
++
+ 
+ ##
+ ## default_pfx
+-- 
+2.50.1 (Apple Git-155)
+

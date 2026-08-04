@@ -1,0 +1,33 @@
+
+
+Date: Wed, 1 Jul 2026 21:15:19 +0300
+Subject: [PATCH 09/13] Allow more functions for non-Linux OS in ntdll system.c
+
+---
+ dlls/ntdll/unix/system.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/dlls/ntdll/unix/system.c b/dlls/ntdll/unix/system.c
+index 1fe3081dfcd..432d21a0f42 100644
+--- a/dlls/ntdll/unix/system.c
++++ b/dlls/ntdll/unix/system.c
+@@ -1166,7 +1166,6 @@ static BOOL logical_proc_info_add_group( DWORD num_cpus, ULONG_PTR mask )
+     return TRUE;
+ }
+ 
+-#ifdef linux
+ 
+ /* Helper function for counting bitmap values as commonly used by the Linux kernel
+  * for storing CPU masks in sysfs. The format is comma separated lists of hex values
+@@ -1266,7 +1265,7 @@ static void fill_performance_core_info(void)
+ done:
+     fclose(fpcore_list);
+ }
+-
++#ifdef linux
+ /* for 'data', max_len is the array count. for 'dataex', max_len is in bytes */
+ static NTSTATUS create_logical_proc_info(void)
+ {
+-- 
+2.39.5 (Apple Git-154)
+

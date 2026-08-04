@@ -1,0 +1,37 @@
+
+
+Date: Tue, 14 Jul 2026 09:19:13 +0300
+Subject: [PATCH 05/42] make/rules-common.mk: Change tool names to plain names
+
+---
+ make/rules-common.mk | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 0e3f44c6..7f7434a8 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -114,14 +114,17 @@ $(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-rpath-link=$$($$(
+ # We also always need to specify the linker for the host architecture - a bunch
+ # of crates build host-native bits via build.rs.
+ 
++# notes for macOS:
++# * C, C++ compiler names and ar are replaced with cc, g++ and ar. The names of
++# Xcode supplied utilities have no long form names.
+ $(2)_$(3)_ENV = \
+     $$(CARGO_LINKERS) \
+     CCACHE_BASEDIR="$$(CCACHE_BASEDIR)" \
+     STRIP="$$(STRIP)" \
+-    AR="$$($(3)-$(4)_TARGET)-ar" \
++    AR="ar" \
+     RANLIB="$$($(3)-$(4)_TARGET)-ranlib" \
+-    CC="$$($(3)-$(4)_TARGET)-gcc" \
+-    CXX="$$($(3)-$(4)_TARGET)-g++" \
++    CC="cc" \
++    CXX="g++" \
+     LD="$$($(3)-$(4)_TARGET)-ld" \
+     RC="$$($(3)-windows_TARGET)-windres" \
+     WIDL="$$($(3)-windows_TARGET)-widl" \
+-- 
+2.50.1 (Apple Git-155)
+

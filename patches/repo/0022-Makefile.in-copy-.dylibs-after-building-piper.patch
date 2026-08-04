@@ -1,0 +1,25 @@
+
+
+Date: Tue, 14 Jul 2026 13:59:29 +0300
+Subject: [PATCH 22/42] Makefile.in: copy .dylibs after building piper
+
+---
+ Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index f985eab9..a5de2148 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -476,7 +476,7 @@ $(eval $(call rules-cmake,piper,aarch64,unix))
+ 
+ $(OBJ)/.piper-x86_64-post-build:
+ 	mkdir -p $(PIPER_x86_64_DST)/lib/$(x86_64-unix_TARGET)
+-	mv $(PIPER_x86_64_DST)/*.so* $(PIPER_x86_64_DST)/lib/$(x86_64-unix_TARGET)
++	mv $(PIPER_x86_64_DST)/*.dylib* $(PIPER_x86_64_DST)/lib/$(x86_64-unix_TARGET)
+ 	mkdir -p $(DST_DIR)/share
+ 	cp -a $(PIPER_x86_64_DST)/{espeak-ng-data,libtashkeel_model.ort} $(DST_DIR)/share/
+ 	touch $@
+-- 
+2.50.1 (Apple Git-155)
+

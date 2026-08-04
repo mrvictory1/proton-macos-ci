@@ -1,0 +1,25 @@
+
+
+Date: Thu, 30 Jul 2026 13:31:05 +0300
+Subject: [PATCH 21/21] Use cross platform std::filesystem::current_path()
+
+---
+ src/cpp/main.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/cpp/main.cpp b/src/cpp/main.cpp
+index f8c875b..0b3a0c4 100644
+--- a/src/cpp/main.cpp
++++ b/src/cpp/main.cpp
+@@ -102,7 +102,7 @@ void rawOutputProc(vector<int16_t> &sharedAudioBuffer, mutex &mutAudio,
+ int main(int argc, char *argv[]) {
+   spdlog::set_default_logger(spdlog::stderr_color_st("piper"));
+ 
+-  cout << "cwd: " << get_current_dir_name() << endl;
++  cout << "cwd: " << std::filesystem::current_path() << endl;
+ 
+   RunConfig runConfig;
+   parseArgs(argc, argv, runConfig);
+-- 
+2.50.1 (Apple Git-155)
+

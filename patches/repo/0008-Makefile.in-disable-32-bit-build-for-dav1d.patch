@@ -1,0 +1,25 @@
+
+
+Date: Tue, 14 Jul 2026 11:12:36 +0300
+Subject: [PATCH 08/42] Makefile.in: disable 32-bit build for dav1d
+
+---
+ Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 836227a8..719f0303 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -149,7 +149,7 @@ DAV1D_MESON_ARGS = \
+ 	-Denable_tests=false
+ 
+ $(eval $(call rules-source,dav1d,$(SRCDIR)/dav1d))
+-$(eval $(call rules-meson,dav1d,i386,unix))
++# $(eval $(call rules-meson,dav1d,i386,unix))
+ $(eval $(call rules-meson,dav1d,x86_64,unix))
+ $(eval $(call rules-meson,dav1d,aarch64,unix))
+ 
+-- 
+2.50.1 (Apple Git-155)
+

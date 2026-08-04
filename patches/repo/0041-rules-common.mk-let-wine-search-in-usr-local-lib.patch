@@ -1,0 +1,26 @@
+
+
+Date: Thu, 30 Jul 2026 13:27:07 +0300
+Subject: [PATCH 41/42] rules-common.mk: let wine search in /usr/local/lib
+
+---
+ make/rules-common.mk | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index cb7083af..e460fe15 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -148,7 +148,9 @@ $(2)_$(3)_ENV = \
+ ifeq ($(1),wine)
+ 
+ # aarch64 always builds wine with clang directly so build tools do not need to be specified
++# macOS: wine can't find libraries in /usr/local/lib
+ $(2)_$(3)_ENV += \
++    LD_LIBRARY_PATH="/usr/local/lib/:$$$$LD_LIBRARY_PATH" \
+     CROSSCFLAGS="$$($(2)_$(3)_INCFLAGS) $$($(2)_CFLAGS) $$($(3)_CFLAGS) $$(CFLAGS)" \
+     CROSSLDFLAGS="$$($(2)_$(3)-windows_LIBFLAGS) $$($(2)_$(3)_LIBFLAGS) $$($(2)_LDFLAGS) $$($(3)_LDFLAGS) $$(LDFLAGS)" \
+     i386_AR="$$(i386-windows_TARGET)-ar" \
+-- 
+2.50.1 (Apple Git-155)
+

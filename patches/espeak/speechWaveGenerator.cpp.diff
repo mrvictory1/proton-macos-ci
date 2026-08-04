@@ -1,0 +1,4 @@
+197c197
+< 	unsigned int generate(const unsigned int sampleCount, sample* sampleBuf) {
+---
+> 	unsigned int generate(const unsigned int sampleCount, spsample::sample* sampleBuf) {

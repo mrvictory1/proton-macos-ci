@@ -1,0 +1,44 @@
+
+
+Date: Wed, 1 Jul 2026 14:51:50 +0300
+Subject: [PATCH 05/13] Disable and don't call set_thread_teb function on macOS
+
+---
+ dlls/ntdll/unix/loader.c        | 2 +-
+ dlls/ntdll/unix/signal_x86_64.c | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/ntdll/unix/loader.c b/dlls/ntdll/unix/loader.c
+index 3a4f885e4ae..61ee2a95b83 100644
+--- a/dlls/ntdll/unix/loader.c
++++ b/dlls/ntdll/unix/loader.c
+@@ -2449,7 +2449,7 @@ static void start_main_thread(void)
+     init_cpu_info();
+     init_files();
+ 
+-#if defined(__x86_64__) || defined(__i386__)
++#if (defined(__x86_64__) || defined(__i386__)) && defined(__linux__)
+     set_thread_teb( teb );
+ #endif
+ 
+diff --git a/dlls/ntdll/unix/signal_x86_64.c b/dlls/ntdll/unix/signal_x86_64.c
+index 110404c274c..0fcac95e573 100644
+--- a/dlls/ntdll/unix/signal_x86_64.c
++++ b/dlls/ntdll/unix/signal_x86_64.c
+@@ -3194,11 +3194,12 @@ void signal_init_process(void)
+     perror("sigaction");
+     exit(1);
+ }
+-
++#ifdef __linux__
+ void set_thread_teb( TEB *teb )
+ {
+     arch_prctl( ARCH_SET_GS, teb );
+ }
++#endif
+ 
+ /***********************************************************************
+  *           init_syscall_frame
+-- 
+2.39.5 (Apple Git-154)
+

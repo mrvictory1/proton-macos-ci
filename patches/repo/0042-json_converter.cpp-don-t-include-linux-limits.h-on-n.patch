@@ -1,0 +1,27 @@
+
+
+Date: Thu, 30 Jul 2026 13:28:13 +0300
+Subject: [PATCH 42/42] json_converter.cpp: don't include linux/limits.h on
+ non-Linux OS
+
+---
+ vrclient_x64/json_converter.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/vrclient_x64/json_converter.cpp b/vrclient_x64/json_converter.cpp
+index 3767da46..022a1719 100644
+--- a/vrclient_x64/json_converter.cpp
++++ b/vrclient_x64/json_converter.cpp
+@@ -17,7 +17,9 @@
+ #include "unix_private.h"
+ 
+ #include <stdlib.h>
++#ifdef __linux__
+ #include <linux/limits.h>
++#endif
+ 
+ #if 0
+ #pragma makedep unix
+-- 
+2.50.1 (Apple Git-155)
+

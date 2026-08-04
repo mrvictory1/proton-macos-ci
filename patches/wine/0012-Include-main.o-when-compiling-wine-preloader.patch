@@ -1,0 +1,24 @@
+
+
+Date: Sat, 4 Jul 2026 08:05:14 +0300
+Subject: [PATCH 12/13] Include main.o when compiling wine-preloader
+
+---
+ loader64/Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/loader64/Makefile.in b/loader64/Makefile.in
+index cfbe51d44d2..1004f1967b5 100644
+--- a/loader64/Makefile.in
++++ b/loader64/Makefile.in
+@@ -15,6 +15,6 @@ wine64_OBJS = main.o
+ wine64_DEPS = $(WINELOADER_DEPENDS)
+ wine64_LDFLAGS = $(WINELOADER_LDFLAGS) $(LDEXECFLAGS) $(PTHREAD_LIBS)
+ 
+-wine64_preloader_OBJS = preloader.o
++wine64_preloader_OBJS = preloader.o $(wine64_OBJS)
+ wine64_preloader_DEPS = $(WINELOADER_DEPENDS)
+ wine64_preloader_LDFLAGS = $(WINEPRELOADER_LDFLAGS)
+-- 
+2.39.5 (Apple Git-154)
+

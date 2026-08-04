@@ -1,0 +1,33 @@
+
+
+Date: Tue, 14 Jul 2026 13:17:30 +0300
+Subject: [PATCH 21/42] Makefile.in: use cmake version 3.5 for spirv-headers
+
+---
+ Makefile.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Makefile.in b/Makefile.in
+index 3d890b48..f985eab9 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -377,6 +377,7 @@ $(OBJ)/.gst_plugins_rs-aarch64-post-build:
+ ## Vulkan-Headers
+ ##
+ 
++
+ $(eval $(call rules-source,vulkan-headers,$(SRCDIR)/Vulkan-Headers))
+ $(eval $(call rules-cmake,vulkan-headers,i386,windows))
+ $(eval $(call rules-cmake,vulkan-headers,x86_64,windows))
+@@ -388,6 +389,8 @@ $(eval $(call rules-cmake,vulkan-headers,arm64ec,windows))
+ ## SPIRV-Headers
+ ##
+ 
++SPIRV_HEADERS_CMAKE_ARGS := -DCMAKE_POLICY_VERSION_MINIMUM=3.5
++
+ $(eval $(call rules-source,spirv-headers,$(SRCDIR)/SPIRV-Headers))
+ $(eval $(call rules-cmake,spirv-headers,i386,windows))
+ $(eval $(call rules-cmake,spirv-headers,x86_64,windows))
+-- 
+2.50.1 (Apple Git-155)
+

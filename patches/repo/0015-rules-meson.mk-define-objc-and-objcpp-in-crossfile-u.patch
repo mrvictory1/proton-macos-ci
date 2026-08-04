@@ -1,0 +1,26 @@
+
+
+Date: Tue, 14 Jul 2026 12:05:22 +0300
+Subject: [PATCH 15/42] rules-meson.mk: define objc and objcpp in crossfile,
+ used by gstreamer
+
+---
+ make/rules-meson.mk | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/make/rules-meson.mk b/make/rules-meson.mk
+index 6a5de7e4..4570fb67 100644
+--- a/make/rules-meson.mk
++++ b/make/rules-meson.mk
+@@ -14,6 +14,8 @@ cat <<EOF
+ ar = '$$$$AR'
+ c = '$$$$CC'
+ cpp = '$$$$CXX'
++objc = '$$$$CC'
++objcpp = '$$$$CXX'
+ ld = '$$$$LD'
+ windres = '$$$$RC'
+ strip = '$$$$STRIP'
+-- 
+2.50.1 (Apple Git-155)
+

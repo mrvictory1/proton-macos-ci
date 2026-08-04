@@ -1,0 +1,28 @@
+
+
+Date: Tue, 4 Aug 2026 11:24:15 +0300
+Subject: [PATCH] protontts: import linux/limits.h only on linux
+
+---
+ dlls/protontts/unixlib.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/dlls/protontts/unixlib.c b/dlls/protontts/unixlib.c
+index 1b0fa7a9836..fd7032e7c36 100644
+--- a/dlls/protontts/unixlib.c
++++ b/dlls/protontts/unixlib.c
+@@ -27,7 +27,11 @@
+ #include <unistd.h>
+ #include <pthread.h>
+ #include <fcntl.h>
++#ifdef __linux__
+ #include <linux/limits.h>
++#else
++#define PATH_MAX 4096
++#endif
+ #include <sys/stat.h>
+ 
+ #include <piper/piper_c.h>
+-- 
+2.50.1 (Apple Git-155)
+

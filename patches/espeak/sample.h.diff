@@ -1,0 +1,11 @@
+20c20
+< 
+---
+> namespace spsample {
+24,25c24,25
+< 
+< #endif
+\ No newline at end of file
+---
+> }
+> #endif

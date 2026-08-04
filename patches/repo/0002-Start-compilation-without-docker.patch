@@ -1,0 +1,62 @@
+
+
+Date: Mon, 13 Jul 2026 23:15:09 +0300
+Subject: [PATCH 02/42] Start compilation without docker
+
+---
+ Makefile.in  | 7 +------
+ configure.sh | 4 +++-
+ 2 files changed, 4 insertions(+), 7 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 12c87cb5..bb36849d 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1477,10 +1477,6 @@ ifneq ($(ROOTLESS_CONTAINER),1)
+ 	override DOCKER_OPTS := -e HOME -e USER -e USERID=$(shell id -u) -u $(shell id -u):$(shell id -g) $(DOCKER_OPTS)
+ endif
+ 
+-ifeq ($(CONTAINER_ENGINE),)
+-	CONTAINER_ENGINE := docker
+-endif
+-
+ DOCKER_BASE = $(CONTAINER_ENGINE) run --rm -v $(SRC):$(SRC)$(CONTAINER_MOUNT_OPTS) -v $(OBJ):$(OBJ)$(CONTAINER_MOUNT_OPTS) \
+                 -w $(OBJ) -e MAKEFLAGS \
+                 $(DOCKER_OPTS) $(STEAMRT_IMAGE)
+@@ -1489,8 +1485,7 @@ DOCKER_BASE = $(CONTAINER_ENGINE) run --rm -v $(SRC):$(SRC)$(CONTAINER_MOUNT_OPT
+ .DEFAULT dist deploy redist symstore-tarball:
+ 	if [ "$(ENABLE_CCACHE)" -eq "1" ]; then mkdir -p $(CCACHE_DIR); fi
+ 	mkdir -p $(CARGO_HOME)
+-	$(DOCKER_BASE) $(MAKE) -j$(J) $(filter -j%,$(MAKEFLAGS)) -f $(firstword $(MAKEFILE_LIST)) $(MFLAGS) $(MAKEOVERRIDES) CONTAINER=1 $@
+-
++	if [[ -n "$(CONTAINER_ENGINE)" ]] ; then $(DOCKER_BASE) $(MAKE) -j$(J) $(filter -j%,$(MAKEFLAGS)) -f $(firstword $(MAKEFILE_LIST)) $(MFLAGS) $(MAKEOVERRIDES) CONTAINER=1 $@ ; else $(MAKE) -j$(J) $(filter -j%,$(MAKEFLAGS)) -f $(firstword $(MAKEFILE_LIST)) $(MFLAGS) $(MAKEOVERRIDES) CONTAINER=1 $@ ; fi
+ 
+ .PHONY: test-container
+ test-container:
+diff --git a/configure.sh b/configure.sh
+index 57425015..f2ab6352 100755
+--- a/configure.sh
++++ b/configure.sh
+@@ -152,7 +152,7 @@ function configure() {
+     elif check_container_engine podman "$steamrt_image"; then
+       arg_container_engine="podman"
+     else
+-        die "${arg_container_engine:-Container engine discovery} has failed. Please fix your setup."
++      arg_container_engine="none"
+     fi
+   fi
+ 
+@@ -176,8 +176,10 @@ function configure() {
+       echo "STEAMRT_IMAGE := $(escape_for_make "$arg_protonsdk_image")"
+     fi
+ 
++    if [[ "$arg_container_engine" != "none" ]] ; then
+     echo "ROOTLESS_CONTAINER := $ROOTLESS_CONTAINER"
+     echo "CONTAINER_ENGINE := $arg_container_engine"
++    fi
+     if [[ -n "$arg_docker_opts" ]]; then
+       echo "DOCKER_OPTS := $arg_docker_opts"
+     fi
+-- 
+2.50.1 (Apple Git-155)
+

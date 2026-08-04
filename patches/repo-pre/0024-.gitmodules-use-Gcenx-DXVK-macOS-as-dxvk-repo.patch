@@ -1,0 +1,25 @@
+
+
+Date: Thu, 30 Jul 2026 12:45:27 +0300
+Subject: [PATCH 24/42] .gitmodules: use Gcenx/DXVK-macOS as dxvk repo
+
+---
+ .gitmodules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.gitmodules b/.gitmodules
+index 09fc0392..87cdc084 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -3,7 +3,7 @@
+ 	url = ../wine
+ [submodule "dxvk"]
+ 	path = dxvk
+-	url = https://github.com/doitsujin/dxvk.git
++	url = https://github.com/Gcenx/DXVK-macOS
+ [submodule "openvr"]
+ 	path = openvr
+ 	url = https://github.com/ValveSoftware/openvr
+-- 
+2.50.1 (Apple Git-155)
+

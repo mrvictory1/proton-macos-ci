@@ -1,0 +1,26 @@
+
+
+Date: Tue, 14 Jul 2026 12:04:58 +0300
+Subject: [PATCH 14/42] rules-common.mk: replace unsupported -rpath-link with
+ -L
+
+---
+ make/rules-common.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 2ff87491..6886a01a 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -98,7 +98,7 @@ all: $(1)
+ 
+ $(2)_$(3)_INCFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-I$$($$(d)_$(3)_INCDIR))
+ $(2)_$(3)_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-L$$($$(d)_$(3)_LIBDIR)/$$($(3)-$(4)_LIBDIR))
+-$(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-rpath-link=$$($$(d)_$(3)_LIBDIR)/$$($(3)-unix_LIBDIR))
++$(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-L$$($$(d)_$(3)_LIBDIR)/$$($(3)-unix_LIBDIR))
+ 
+ # PKG_CONFIG is intentionally never using windows target, as it's missing
+ # wrapper scripts in the toolchain, we use PKG_CONFIG_LIBDIR directly
+-- 
+2.50.1 (Apple Git-155)
+

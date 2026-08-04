@@ -1,0 +1,25 @@
+
+
+Date: Mon, 13 Jul 2026 23:20:02 +0300
+Subject: [PATCH 01/42] configure.sh: modify build name substitution
+
+---
+ configure.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.sh b/configure.sh
+index 60b6df43..57425015 100755
+--- a/configure.sh
++++ b/configure.sh
+@@ -115,7 +115,7 @@ function configure() {
+     info "No build name specified, using default: $build_name"
+   fi
+ 
+-  if [[ ${build_name,,} == *proton* ]]; then
++  if [[ ${build_name} == *proton* ]]; then
+     internal_tool_name=${build_name}
+   else
+     internal_tool_name=${build_name}-proton
+-- 
+2.50.1 (Apple Git-155)
+

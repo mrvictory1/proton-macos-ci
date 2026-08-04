@@ -1,0 +1,30 @@
+
+
+Date: Wed, 22 Jul 2026 14:37:38 +0300
+Subject: [PATCH 2/4] winbase.h: don't error on strncpy/wcsncpy on macOS
+
+---
+ include/winbase.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/include/winbase.h b/include/winbase.h
+index 0213b40ef57..5dff5787fbb 100644
+--- a/include/winbase.h
++++ b/include/winbase.h
+@@ -2624,9 +2624,12 @@ static inline LPSTR WINAPI lstrcatA( LPSTR dst, LPCSTR src )
+ /* strncpy/wcsncpy don't do what you think, don't use them */
+ #undef strncpy
+ #undef wcsncpy
++/* just including a header with wcsncpy halts compilation on macOS
++   evein if the function is not called  */
++#ifndef __APPLE__
+ #define strncpy(d,s,n) error do_not_use_strncpy_use_lstrcpynA_or_memcpy_instead
+ #define wcsncpy(d,s,n) error do_not_use_wcsncpy_use_lstrcpynW_or_memcpy_instead
+-
++#endif
+ #endif /* !defined(__WINESRC__) || defined(WINE_NO_INLINE_STRING) */
+ 
+ #define     lstrcat WINELIB_NAME_AW(lstrcat)
+-- 
+2.50.1 (Apple Git-155)
+

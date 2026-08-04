@@ -1,0 +1,65 @@
+
+
+Date: Tue, 14 Jul 2026 11:54:54 +0300
+Subject: [PATCH 13/42] Makefile.in: disable 32-bit build of gsteamer
+ components
+
+---
+ Makefile.in | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 364e5e2c..162352f8 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -178,7 +178,6 @@ GST_ORC_MESON_ARGS := \
+ 	-Dorc-test=disabled
+ 
+ $(eval $(call rules-source,gst_orc,$(SRCDIR)/gst-orc))
+-$(eval $(call rules-meson,gst_orc,i386,unix))
+ $(eval $(call rules-meson,gst_orc,x86_64,unix))
+ $(eval $(call rules-meson,gst_orc,aarch64,unix))
+ 
+@@ -197,7 +196,6 @@ GSTREAMER_LDFLAGS = -lm
+ GSTREAMER_DEPENDS = gst_orc
+ 
+ $(eval $(call rules-source,gstreamer,$(SRCDIR)/gstreamer/subprojects/gstreamer))
+-$(eval $(call rules-meson,gstreamer,i386,unix))
+ $(eval $(call rules-meson,gstreamer,x86_64,unix))
+ $(eval $(call rules-meson,gstreamer,aarch64,unix))
+ 
+@@ -242,7 +240,6 @@ GST_BASE_DEPENDS = gst_orc graphene gstreamer
+ GST_BASE_HOST_DEPENDS = gst_orc
+ 
+ $(eval $(call rules-source,gst_base,$(SRCDIR)/gstreamer/subprojects/gst-plugins-base))
+-$(eval $(call rules-meson,gst_base,i386,unix))
+ $(eval $(call rules-meson,gst_base,x86_64,unix))
+ $(eval $(call rules-meson,gst_base,aarch64,unix))
+ 
+@@ -276,7 +273,6 @@ GST_GOOD_DEPENDS = gst_orc gstreamer gst_base libsoup
+ GST_GOOD_HOST_DEPENDS = gst_orc
+ 
+ $(eval $(call rules-source,gst_good,$(SRCDIR)/gstreamer/subprojects/gst-plugins-good/))
+-$(eval $(call rules-meson,gst_good,i386,unix))
+ $(eval $(call rules-meson,gst_good,x86_64,unix))
+ $(eval $(call rules-meson,gst_good,aarch64,unix))
+ 
+@@ -293,7 +289,6 @@ GST_BAD_MESON_ARGS := \
+ GST_BAD_DEPENDS = gst_orc gstreamer gst_base
+ 
+ $(eval $(call rules-source,gst_bad,$(SRCDIR)/gstreamer/subprojects/gst-plugins-bad/))
+-$(eval $(call rules-meson,gst_bad,i386,unix))
+ $(eval $(call rules-meson,gst_bad,x86_64,unix))
+ $(eval $(call rules-meson,gst_bad,aarch64,unix))
+ 
+@@ -360,7 +355,6 @@ GST_PLUGINS_RS_CARGO_ARGS = \
+ GST_PLUGINS_RS_DEPENDS = gst_orc gstreamer gst_base dav1d
+ 
+ $(eval $(call rules-source,gst_plugins_rs,$(SRCDIR)/gst-plugins-rs))
+-$(eval $(call rules-cargo,gst_plugins_rs,i386,unix))
+ $(eval $(call rules-cargo,gst_plugins_rs,x86_64,unix))
+ $(eval $(call rules-cargo,gst_plugins_rs,aarch64,unix))
+ 
+-- 
+2.50.1 (Apple Git-155)
+

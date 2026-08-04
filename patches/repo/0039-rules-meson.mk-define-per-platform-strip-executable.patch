@@ -1,0 +1,35 @@
+
+
+Date: Thu, 30 Jul 2026 13:25:13 +0300
+Subject: [PATCH 39/42] rules-meson.mk: define per-platform strip executable
+
+---
+ make/rules-meson.mk | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/make/rules-meson.mk b/make/rules-meson.mk
+index 4570fb67..105487f7 100644
+--- a/make/rules-meson.mk
++++ b/make/rules-meson.mk
+@@ -18,7 +18,7 @@ objc = '$$$$CC'
+ objcpp = '$$$$CXX'
+ ld = '$$$$LD'
+ windres = '$$$$RC'
+-strip = '$$$$STRIP'
++strip = '$$($(3)-$(4)_STRIP)'
+ widl = '$$$$WIDL'
+ pkgconfig = '$$$$PKG_CONFIG'
+ 
+@@ -76,4 +76,9 @@ arm64ec_MESON_CPU := aarch64
+ unix_MESON_SYSTEM := darwin
+ windows_MESON_SYSTEM := windows
+ 
++i386-unix_STRIP = llvm-strip
++x86_64-unix_STRIP = llvm-strip
++i386-windows_STRIP = i686-w64-mingw32-strip
++x86_64-windows_STRIP = x86_64-w64-mingw32-strip
++
+ rules-meson = $(call create-rules-meson,$(1),$(call toupper,$(1)),$(2),$(3))
+-- 
+2.50.1 (Apple Git-155)
+

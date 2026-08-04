@@ -1,0 +1,27 @@
+
+
+Date: Tue, 14 Jul 2026 11:54:23 +0300
+Subject: [PATCH 12/42] Makefile.in: disable sysprof on libsoup
+
+sysprof has been disabled due to missing headers used by it
+---
+ Makefile.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 719f0303..364e5e2c 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -161,7 +161,8 @@ $(eval $(call rules-meson,dav1d,aarch64,unix))
+ LIBSOUP_MESON_ARGS = \
+ 	-Ddocs=disabled \
+ 	-Dautobahn=disabled \
+-	-Dtls_check=false
++	-Dtls_check=false \
++	-Dsysprof=disabled
+ 
+ $(eval $(call rules-source,libsoup,$(SRCDIR)/libsoup))
+ $(eval $(call rules-meson,libsoup,i386,unix))
+-- 
+2.50.1 (Apple Git-155)
+

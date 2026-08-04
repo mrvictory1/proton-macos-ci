@@ -1,0 +1,49 @@
+
+
+Date: Tue, 14 Jul 2026 11:48:31 +0300
+Subject: [PATCH 10/42] rules-common.mk: modify pkg-config search paths
+
+---
+ make/rules-common.mk | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 9987d633..720305fe 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -117,6 +117,11 @@ $(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-rpath-link=$$($$(
+ # notes for macOS:
+ # * C, C++ compiler names and ar are replaced with cc, g++ and ar. The names of
+ # Xcode supplied utilities have no long form names.
++# * .pc files reside in Homebrew managed /usr/local/lib directory.
++# * libffi and zlib packages of Homebrew are "keg-only" which means they are 
++# not installed in /usr/local. They have to be manually included.
++#  
++
+ $(2)_$(3)_ENV = \
+     $$(CARGO_LINKERS) \
+     CCACHE_BASEDIR="$$(CCACHE_BASEDIR)" \
+@@ -128,17 +133,17 @@ $(2)_$(3)_ENV = \
+     LD="$$($(3)-$(4)_TARGET)-ld" \
+     RC="$$($(3)-windows_TARGET)-windres" \
+     WIDL="$$($(3)-windows_TARGET)-widl" \
+-    PKG_CONFIG="$$($$(HOST_ARCH)-unix_TARGET)-pkg-config" \
++    PKG_CONFIG="pkg-config" \
+     PATH="$$(call list-join,:,$$(foreach d,$$($(2)_$(3)_HOST_DEPS),$$($$(d)_$$(HOST_ARCH)_BINDIR)),,:):$$$$PATH" \
+     LD_LIBRARY_PATH="$$(call list-join,:,$$(foreach d,$$($(2)_$(3)_HOST_DEPS),$$($$(d)_$$(HOST_ARCH)_LIBDIR)/$$($$(HOST_ARCH)-unix_LIBDIR)),,:)$$$$LD_LIBRARY_PATH" \
+-    PKG_CONFIG_PATH="$$(call list-join,:,$$(foreach d,$$($(2)_$(3)_DEPS),$$($$(d)_$(3)_LIBDIR)/$$($(3)-$(4)_LIBDIR)/pkgconfig))" \
+-    PKG_CONFIG_LIBDIR="/usr/lib/$$($(3)-$(4)_LIBDIR)/pkgconfig:/usr/share/pkgconfig" \
++    PKG_CONFIG_PATH="$$(call list-join,:,$$(foreach d,$$($(2)_$(3)_DEPS),$$($$(d)_$(3)_LIBDIR)/$$($(3)-$(4)_LIBDIR)/pkgconfig)):/usr/local/opt/libffi/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig" \
+     CMAKE_PREFIX_PATH="$$(call list-join,:,$$(foreach d,$$($(2)_$(3)_DEPS),$$($$(d)_$(3)_DST)))" \
+     CFLAGS="$$($(2)_$(3)_INCFLAGS) $$($(2)_CFLAGS) $$($(3)_CFLAGS) $$(CFLAGS)" \
+     CPPFLAGS="$$($(2)_$(3)_INCFLAGS) $$($(2)_CFLAGS) $$($(3)_CFLAGS) $$(CFLAGS)" \
+     CXXFLAGS="$$($(2)_$(3)_INCFLAGS) -std=c++17 $$($(2)_CFLAGS) $$($(3)_CFLAGS) $$(CFLAGS)" \
+     LDFLAGS="$$($(2)_$(3)-$(4)_LIBFLAGS) $$($(2)_$(3)_LIBFLAGS) $$($(2)_LDFLAGS) $$($(3)_LDFLAGS) $$(LDFLAGS)" \
+     SOURCE_DATE_EPOCH="$$($(2)_$(3)_SOURCE_DATE_EPOCH)" \
++    PKG_CONFIG_LIBDIR="/usr/local/lib/pkgconfig" \
+ 
+ ifeq ($(1),wine)
+ 
+-- 
+2.50.1 (Apple Git-155)
+

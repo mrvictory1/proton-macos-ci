@@ -1,0 +1,27 @@
+
+
+Date: Thu, 30 Jul 2026 13:17:54 +0300
+Subject: [PATCH 33/42] Makefile.in: don't call patch if not needed
+
+patch on macOS does not create a file if patch file is blank
+---
+ Makefile.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index e89f0924..e3457b3a 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1100,7 +1100,8 @@ $(FONTS_OBJ)/%.ttf: $(FONTS_OBJ)/$$($$(*)_ORIG).sfd $(FONTSCRIPT) | $(FONTS_OBJ)
+ 	$(FONTFORGE) -script $(FONTSCRIPT) $< $($(*)_NAMES) $@
+ 
+ $(FONTS_OBJ)/%.sfd: $(LIBERATION_SRCDIR)/%.sfd | $(FONTS_OBJ)
+-	patch $< -o $@ $(firstword $($(*)_PATCH) /dev/null)
++	# patch $< -o $@ $(firstword $($(*)_PATCH) /dev/null)
++	if [ -n "$($(*)_PATCH)" ] ; then patch $< -o $@ $($(*)_PATCH) ; else cp $< $@ ; fi
+ 
+ fonts: $(FONTS_OBJ)/arial.ttf
+ fonts: $(FONTS_OBJ)/arialbd.ttf
+-- 
+2.50.1 (Apple Git-155)
+

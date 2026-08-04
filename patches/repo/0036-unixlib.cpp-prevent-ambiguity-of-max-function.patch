@@ -1,0 +1,25 @@
+
+
+Date: Thu, 30 Jul 2026 13:22:00 +0300
+Subject: [PATCH 36/42] unixlib.cpp: prevent ambiguity of max function
+
+---
+ lsteamclient/unixlib.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lsteamclient/unixlib.cpp b/lsteamclient/unixlib.cpp
+index 65b7f448..86742e32 100644
+--- a/lsteamclient/unixlib.cpp
++++ b/lsteamclient/unixlib.cpp
+@@ -838,7 +838,7 @@ static void collapse_path( WCHAR *path, UINT mark )
+     for (p = path; *p; p++) if (*p == '/') *p = '\\';
+ 
+     /* collapse duplicate backslashes */
+-    next = path + std::max( 1u, mark );
++    next = path + max( 1u, mark );
+     for (p = next; *p; p++) if (*p != '\\' || next[-1] != '\\') *next++ = *p;
+     *next = 0;
+ 
+-- 
+2.50.1 (Apple Git-155)
+

@@ -1,0 +1,33 @@
+
+
+Date: Tue, 14 Jul 2026 11:14:32 +0300
+Subject: [PATCH 09/42] rules-common.mk: remove --set-section-flags argument
+
+---
+ make/rules-common.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 51bae87f..9987d633 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -66,14 +66,14 @@ ifneq ($(UNSTRIPPED_BUILD),)
+ 	    xargs $(--verbose?) -0 -r -P$$(J) -n3 $(OBJCOPY) $(OBJCOPY_FLAGS)
+ 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
+ 	    -printf '--add-gnu-debuglink=$$(DST_LIBDIR)/%p.debug\0--strip-debug\0%p\0$$(DST_LIBDIR)/%p\0' | \
+-	    xargs $(--verbose?) -0 -r -P$$(J) -n4 $(OBJCOPY) $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
++	    xargs $(--verbose?) -0 -r -P$$(J) -n4 $(OBJCOPY) $(OBJCOPY_FLAGS)
+ 	touch $$@
+ else
+ 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
+ 	    -printf '$$(DST_LIBDIR)/%p.debug\0' | xargs $(--verbose?) -0 -r -P$$(J) rm -f
+ 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
+ 	    -printf '--strip-debug\0%p\0$$(DST_LIBDIR)/%p\0' | \
+-	    xargs $(--verbose?) -0 -r -P$$(J) -n3 $(OBJCOPY) $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
++	    xargs $(--verbose?) -0 -r -P$$(J) -n3 $(OBJCOPY) $(OBJCOPY_FLAGS)
+ 	touch $$@
+ endif
+ 
+-- 
+2.50.1 (Apple Git-155)
+

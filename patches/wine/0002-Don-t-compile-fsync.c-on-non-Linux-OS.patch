@@ -1,0 +1,30 @@
+
+
+Date: Wed, 1 Jul 2026 14:30:11 +0300
+Subject: [PATCH 02/13] Don't compile fsync.c on non-Linux OS
+
+---
+ dlls/ntdll/unix/fsync.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/ntdll/unix/fsync.c b/dlls/ntdll/unix/fsync.c
+index 25d41cac793..cd214fa141f 100644
+--- a/dlls/ntdll/unix/fsync.c
++++ b/dlls/ntdll/unix/fsync.c
+@@ -22,7 +22,7 @@
+ #if 0
+ #pragma makedep unix
+ #endif
+-
++#ifdef __linux__
+ #include "config.h"
+ 
+ #include <assert.h>
+@@ -1236,3 +1236,4 @@ NTSTATUS fsync_signal_and_wait( HANDLE signal, HANDLE wait, BOOLEAN alertable,
+ 
+     return fsync_wait_objects( 1, &wait, TRUE, alertable, timeout );
+ }
++#endif // __linux
+-- 
+2.39.5 (Apple Git-154)
+

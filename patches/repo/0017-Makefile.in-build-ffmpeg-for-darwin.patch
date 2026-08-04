@@ -1,0 +1,42 @@
+
+
+Date: Tue, 14 Jul 2026 12:25:31 +0300
+Subject: [PATCH 17/42] Makefile.in: build ffmpeg for darwin
+
+---
+ Makefile.in | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index e34fb020..38e32c59 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -306,19 +306,19 @@ FFMPEG_CONFIGURE_ARGS := \
+ 	--enable-demuxer=matroska \
+ 
+ FFMPEG_i386-unix_CONFIGURE_ARGS := \
+-	--cross-prefix=i686-linux-gnu- \
++	--cross-prefix= \
+ 	--arch=x86 \
+-	--target-os=linux
++	--target-os=darwin
+ 
+ FFMPEG_x86_64-unix_CONFIGURE_ARGS := \
+-	--cross-prefix=x86_64-linux-gnu- \
++	--cross-prefix= \
+ 	--arch=x86_64 \
+-	--target-os=linux
++	--target-os=darwin
+ 
+ FFMPEG_aarch64-unix_CONFIGURE_ARGS := \
+-	--cross-prefix=aarch64-linux-gnu- \
++	--cross-prefix= \
+ 	--arch=aarch64 \
+-	--target-os=linux
++	--target-os=darwin
+ 
+ $(eval $(call rules-source,ffmpeg,$(SRCDIR)/ffmpeg))
+ $(eval $(call rules-configure,ffmpeg,i386,unix))
+-- 
+2.50.1 (Apple Git-155)
+

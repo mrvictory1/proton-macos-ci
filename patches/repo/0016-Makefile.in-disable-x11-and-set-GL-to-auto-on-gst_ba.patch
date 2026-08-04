@@ -1,0 +1,30 @@
+
+
+Date: Tue, 14 Jul 2026 12:12:11 +0300
+Subject: [PATCH 16/42] Makefile.in: disable x11 and set GL to auto on gst_base
+
+---
+ Makefile.in | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 162352f8..e34fb020 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -229,10 +229,10 @@ GST_BASE_MESON_ARGS := \
+ 	-Dvideoconvertscale=enabled \
+ 	-Dvorbis=enabled \
+ 	-Dorc=enabled \
+-	-Dx11=enabled \
+-	-Dgl=enabled \
++	-Dx11=disabled \
++	-Dgl=auto \
+ 	-Dgl-graphene=enabled \
+-	-Dgl_platform=glx,egl \
++	-Dgl_platform=auto \
+ 	--wrap-mode nodownload \
+ 
+ GST_BASE_LDFLAGS = -lm
+-- 
+2.50.1 (Apple Git-155)
+

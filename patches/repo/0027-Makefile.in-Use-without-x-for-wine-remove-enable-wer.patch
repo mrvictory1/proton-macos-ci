@@ -1,0 +1,32 @@
+
+
+Date: Thu, 30 Jul 2026 13:02:52 +0300
+Subject: [PATCH 27/42] Makefile.in: Use --without-x for wine, remove
+ --enable-werror
+
+---
+ Makefile.in | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 3fc6bc23..e438db81 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -611,9 +611,12 @@ WINE_SOURCE_ARGS = \
+   --exclude server/request_trace.h \
+ 
+ WINE_AUTOCONF_ARGS = \
+-  --enable-werror \
+   --with-mingw=$(MINGW_TYPE) \
+-  --disable-tests
++  --disable-tests \
++  --without-x
++
++# --enable-werror 
++# Removed due to heavy use of derprecated "sprintf" function.
+ 
+ WINE_x86_64_AUTOCONF_ARGS = \
+   --enable-archs=$(call list-join,$(comma),x86_64 $(filter-out x86_64 $(unix_ARCHS),$(windows_ARCHS))) \
+-- 
+2.50.1 (Apple Git-155)
+

@@ -1,0 +1,54 @@
+
+
+Date: Tue, 14 Jul 2026 09:21:05 +0300
+Subject: [PATCH 06/42] make/: change target variables to apple-darwin
+
+---
+ make/rules-common.mk | 12 ++++++------
+ make/rules-meson.mk  |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/make/rules-common.mk b/make/rules-common.mk
+index 7f7434a8..51bae87f 100644
+--- a/make/rules-common.mk
++++ b/make/rules-common.mk
+@@ -183,17 +183,17 @@ else
+ install-strip = $(OBJCOPY) $(OBJCOPY_FLAGS) --strip-debug $(1) $(2)/$(notdir $(1)) && rm -f $(2)/$(notdir $(1)).debug
+ endif
+ 
+-i386-unix_TARGET := i686-linux-gnu
+-x86_64-unix_TARGET := x86_64-linux-gnu
+-aarch64-unix_TARGET := aarch64-linux-gnu
++i386-unix_TARGET := i686-apple-darwin
++x86_64-unix_TARGET := x86_64-apple-darwin
++aarch64-unix_TARGET := aarch64-apple-darwin
+ i386-windows_TARGET := i686-w64-mingw32
+ x86_64-windows_TARGET := x86_64-w64-mingw32
+ aarch64-windows_TARGET := aarch64-w64-mingw32
+ arm64ec-windows_TARGET := arm64ec-w64-mingw32
+ 
+-i386-unix_LIBDIR := i386-linux-gnu
+-x86_64-unix_LIBDIR := x86_64-linux-gnu
+-aarch64-unix_LIBDIR := aarch64-linux-gnu
++i386-unix_LIBDIR := i386-apple-darwin
++x86_64-unix_LIBDIR := x86_64-apple-darwin
++aarch64-unix_LIBDIR := aarch64-apple-darwin
+ i386-windows_LIBDIR := i386-w64-mingw32
+ x86_64-windows_LIBDIR := x86_64-w64-mingw32
+ aarch64-windows_LIBDIR := aarch64-w64-mingw32
+diff --git a/make/rules-meson.mk b/make/rules-meson.mk
+index 5dfcbb7b..8bde3327 100644
+--- a/make/rules-meson.mk
++++ b/make/rules-meson.mk
+@@ -71,7 +71,7 @@ x86_64_MESON_CPU := x86_64
+ aarch64_MESON_CPU := aarch64
+ arm64ec_MESON_CPU := aarch64
+ 
+-unix_MESON_SYSTEM := linux
++unix_MESON_SYSTEM := apple
+ windows_MESON_SYSTEM := windows
+ 
+ rules-meson = $(call create-rules-meson,$(1),$(call toupper,$(1)),$(2),$(3))
+-- 
+2.50.1 (Apple Git-155)
+

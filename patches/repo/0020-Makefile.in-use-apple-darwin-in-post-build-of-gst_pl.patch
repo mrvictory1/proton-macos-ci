@@ -1,0 +1,42 @@
+
+
+Date: Tue, 14 Jul 2026 12:44:11 +0300
+Subject: [PATCH 20/42] Makefile.in: use apple-darwin in post build of
+ gst_plugins_rs
+
+---
+ Makefile.in | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 72240d39..3d890b48 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -358,18 +358,18 @@ $(eval $(call rules-cargo,gst_plugins_rs,x86_64,unix))
+ $(eval $(call rules-cargo,gst_plugins_rs,aarch64,unix))
+ 
+ $(OBJ)/.gst_plugins_rs-x86_64-post-build:
+-	mkdir -p $(GST_PLUGINS_RS_x86_64_DST)/lib/x86_64-linux-gnu/gstreamer-1.0/
+-	cp -a $(GST_PLUGINS_RS_x86_64_OBJ)/x86_64-unknown-linux-gnu/release/libgstdav1d.so $(GST_PLUGINS_RS_x86_64_DST)/lib/x86_64-linux-gnu/gstreamer-1.0/
++	mkdir -p $(GST_PLUGINS_RS_x86_64_DST)/lib/x86_64-apple-darwin/gstreamer-1.0/
++	cp -a $(GST_PLUGINS_RS_x86_64_OBJ)/x86_64-apple-darwin/release/libgstdav1d.dylib $(GST_PLUGINS_RS_x86_64_DST)/lib/x86_64-apple-darwin/gstreamer-1.0/
+ 	touch $@
+ 
+ $(OBJ)/.gst_plugins_rs-i386-post-build:
+-	mkdir -p $(GST_PLUGINS_RS_i386_DST)/lib/i386-linux-gnu/gstreamer-1.0/
+-	cp -a $(GST_PLUGINS_RS_i386_OBJ)/i686-unknown-linux-gnu/release/libgstdav1d.so $(GST_PLUGINS_RS_i386_DST)/lib/i386-linux-gnu/gstreamer-1.0/
++	mkdir -p $(GST_PLUGINS_RS_i386_DST)/lib/i386-apple-darwin/gstreamer-1.0/
++	cp -a $(GST_PLUGINS_RS_i386_OBJ)/i686-unknown-apple-darwin/release/libgstdav1d.dylib $(GST_PLUGINS_RS_i386_DST)/lib/i386-apple-darwin/gstreamer-1.0/
+ 	touch $@
+ 
+ $(OBJ)/.gst_plugins_rs-aarch64-post-build:
+-	mkdir -p $(GST_PLUGINS_RS_aarch64_DST)/lib/aarch64-linux-gnu/gstreamer-1.0/
+-	cp -a $(GST_PLUGINS_RS_aarch64_OBJ)/aarch64-unknown-linux-gnu/release/libgstdav1d.so $(GST_PLUGINS_RS_aarch64_DST)/lib/aarch64-linux-gnu/gstreamer-1.0/
++	mkdir -p $(GST_PLUGINS_RS_aarch64_DST)/lib/aarch64-apple-darwin/gstreamer-1.0/
++	cp -a $(GST_PLUGINS_RS_aarch64_OBJ)/aarch64-unknown-apple-darwin/release/libgstdav1d.dylib $(GST_PLUGINS_RS_aarch64_DST)/lib/aarch64-apple-darwin/gstreamer-1.0/
+ 	touch $@
+ 
+ 
+-- 
+2.50.1 (Apple Git-155)
+

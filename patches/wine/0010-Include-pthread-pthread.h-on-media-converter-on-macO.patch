@@ -1,0 +1,26 @@
+
+
+Date: Sat, 4 Jul 2026 07:31:18 +0300
+Subject: [PATCH 10/13] Include pthread/pthread.h on media converter on macOS
+
+---
+ dlls/winegstreamer/media-converter/media-converter.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/dlls/winegstreamer/media-converter/media-converter.h b/dlls/winegstreamer/media-converter/media-converter.h
+index c7034401564..12cd6eb9a6d 100644
+--- a/dlls/winegstreamer/media-converter/media-converter.h
++++ b/dlls/winegstreamer/media-converter/media-converter.h
+@@ -29,6 +29,9 @@
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <sys/stat.h>
++#ifdef __APPLE__
++#include <pthread/pthread.h>
++#endif
+ 
+ #include "unix_private.h"
+ #include "wine/rbtree.h"
+-- 
+2.39.5 (Apple Git-154)
+
