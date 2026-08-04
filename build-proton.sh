@@ -1,10 +1,10 @@
 #!/bin/bash
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
-brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libnghttp2 lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers tailscale theora vulkan-headers wget
+brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libnghttp2 lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget
 echo "1" > .brew-deps
 fi
 
-if [ -d venv ] ; then
+if [ ! -d venv ] ; then
     python3 -m venv venv
 fi
 source venv/bin/activate
@@ -41,7 +41,7 @@ done
 
 # Piper build fails due to a dependency downloaded *during* build time.
 # So instead of patching before building, start the build and let it fail.
-make piper
+make piper || true
 
 SPEECHPLAYER_DIR="obj-piper-x86_64/p/src/piper_phonemize_external-build/e/src/espeak_ng_external/src/speechPlayer/src"
 ESPEAK_PATCH_DIR=../patches/espeak
@@ -53,6 +53,6 @@ done
 # Wine build fails due to lld-link failing to link vkd3d into wined3d.
 # Custom commands that aren't easy to integrate into the build system
 # need to be executed.
-make redist
+make redist || true
 ../wined3d.sh
 make redist #again
