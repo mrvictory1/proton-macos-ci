@@ -1,5 +1,5 @@
-
-
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
 Date: Tue, 14 Jul 2026 12:05:22 +0300
 Subject: [PATCH 15/42] rules-meson.mk: define objc and objcpp in crossfile,
  used by gstreamer

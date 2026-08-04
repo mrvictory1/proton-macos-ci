@@ -1,5 +1,5 @@
-
-
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
 Date: Wed, 1 Jul 2026 15:01:45 +0300
 Subject: [PATCH 06/13] Change assembly instruction in signal_x86_64.c
 

@@ -1,5 +1,5 @@
-
-
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
 Date: Wed, 22 Jul 2026 14:38:22 +0300
 Subject: [PATCH 3/4] loader64/Makefile.in: don't depend on wine_info.plist
 

@@ -1,5 +1,5 @@
-
-
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
 Date: Tue, 14 Jul 2026 12:44:11 +0300
 Subject: [PATCH 20/42] Makefile.in: use apple-darwin in post build of
  gst_plugins_rs
