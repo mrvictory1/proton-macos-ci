@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -v GITHUB_ACTIONS ]]; then
+if [[ ! -z "$GITHUB_ACTIONS" ]]; then
 DEPTH="--depth=1"
 fi
 
