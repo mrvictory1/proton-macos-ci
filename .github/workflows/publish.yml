@@ -6,6 +6,10 @@ jobs:
     runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+          cache: 'pip'
       - run: ./gh-cleanup.sh
       - run: ./build-proton.sh
       - run: ./gh-publish.sh
