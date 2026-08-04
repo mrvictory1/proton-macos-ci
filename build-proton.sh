@@ -1,6 +1,10 @@
 #!/bin/bash
 if [[ ! -z "$GITHUB_ACTIONS" ]]; then
 DEPTH="--depth=1"
+# GitHub Actions runner has a different version of perl installed without json module.
+# Perl json module is required by vkd3d.
+# macOS provided perl does not need this step.
+sudo cpanm install JSON 
 fi
 
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
