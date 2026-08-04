@@ -1,0 +1,4 @@
+.brew-deps
+.python-deps
+venv/
+Proton/
