@@ -11,7 +11,7 @@ fi
 # a nice way to download or compile libEGL so instead it is copied from Google Chrome.
 # Source: https://stackoverflow.com/a/77461235
 # The .dylib files are (currently) universal so this step should still work under Rosetta 2.
-CHROME_LIB_DIR=/Applications/Google\\ Chrome.app/Contents/Frameworks/Google\\ Chrome\\ Framework.framework/Libraries
+CHROME_LIB_DIR="/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Libraries"
 if [[ ! -e /usr/local/lib/libEGL.dylib ]]; then
     if [[ -d "/Applications/Google Chrome.app/" ]]
         if file $CHROME_LIB_DIR/liblibEGL.dylib |grep x86_64 &> /dev/null; then
