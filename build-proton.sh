@@ -26,7 +26,7 @@ if [[ ! -e /usr/local/lib/libEGL.dylib ]]; then
 fi
 
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
-brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libffi libnghttp2 libvpx lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget zlib
+brew install automake bison cmake coreutils findutils fontforge glib glib-networking gnu-sed grep libffi libnghttp2 libvpx lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget zlib
 echo "1" > .brew-deps
 fi
 
@@ -47,6 +47,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/libtool/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 git clone https://github.com/ValveSoftware/Proton/ $DEPTH
 cd Proton
