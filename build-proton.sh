@@ -7,6 +7,29 @@ DEPTH="--depth=1"
 brew uninstall perl
 fi
 
+# Wine's dlls/win32u/opengl.c file fails to compile if libEGL is missing. However there isn't
+# a nice way to download or compile libEGL so instead it is copied from Google Chrome.
+# Source: https://stackoverflow.com/a/77461235
+# The .dylib files are (currently) universal so this step should still work under Rosetta 2.
+CHROME_LIB_DIR=/Applications/Google\\ Chrome.app/Contents/Frameworks/Google\\ Chrome\\ Framework.framework/Libraries
+if [[ ! -e /usr/local/lib/libEGL.dylib ]]; then
+    if [[ -d "/Applications/Google Chrome.app/" ]]
+        if file $CHROME_LIB_DIR/liblibEGL.dylib |grep x86_64 &> /dev/null; then
+            cp $CHROME_LIB_DIR/libGLESv2.dylib /usr/local/lib
+            cp $CHROME_LIB_DIR/libEGL.dylib /usr/local/lib
+        else
+            echo "Chrome now uses ARM64 libraries."
+            return 1
+        fi
+    else
+        echo "Copy libEGL.dylib and libGLESv2.dylib from an application supplying them"
+        echo "to /usr/local/lib. Google Chrome and other Chromium based browsers come"
+        echo "with these libraries."
+        echo "You may want to read / edit the script."
+        return 1
+    fi
+fi
+
 if [[ ! $(cat .brew-deps) -gt 0 ]] ; then
 brew install automake bison cmake coreutils findutils fontforge glib glib-networking grep libffi libnghttp2 libvpx lld make meson mingw-w64 molten-vk mpg123 nasm opus orc rust sdl2-compat spirv-headers theora vulkan-headers wget zlib
 echo "1" > .brew-deps
