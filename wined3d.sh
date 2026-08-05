@@ -19,9 +19,7 @@ tools/winegcc/winegcc -o dlls/wined3d/i386-windows/wined3d.dll --wine-objdir . -
   dlls/wined3d/i386-windows/utils.o dlls/wined3d/i386-windows/vertexdeclaration.o \
   dlls/wined3d/i386-windows/view.o dlls/wined3d/i386-windows/wined3d_main.o \
   dlls/wined3d/resource.res dlls/wined3d/version.res \
-  -L../dst-vkd3d-i386/lib -lvkd3d.dll \
-  -lvkd3d-shader -lvkd3d-utils \
-  -L../dst-vkd3d-x86_64/lib -lvkd3d.dll \
+  -L../dst-vkd3d-i386/lib -lvkd3d \
   -lvkd3d-shader -lvkd3d-utils libs/dxguid/i386-windows/libdxguid.a \
   dlls/opengl32/i386-windows/libopengl32.a dlls/user32/i386-windows/libuser32.a \
   dlls/gdi32/i386-windows/libgdi32.a dlls/advapi32/i386-windows/libadvapi32.a \
@@ -47,7 +45,7 @@ tools/winegcc/winegcc -o dlls/wined3d/x86_64-windows/wined3d.dll --wine-objdir .
   dlls/wined3d/x86_64-windows/utils.o dlls/wined3d/x86_64-windows/vertexdeclaration.o \
   dlls/wined3d/x86_64-windows/view.o dlls/wined3d/x86_64-windows/wined3d_main.o \
   dlls/wined3d/resource.res dlls/wined3d/version.res \
-  -L../dst-vkd3d-x86_64/lib -lvkd3d.dll \
+  -L../dst-vkd3d-x86_64/lib -lvkd3d \
   -lvkd3d-shader -lvkd3d-utils libs/dxguid/x86_64-windows/libdxguid.a \
   dlls/opengl32/x86_64-windows/libopengl32.a dlls/user32/x86_64-windows/libuser32.a dlls/gdi32/x86_64-windows/libgdi32.a dlls/advapi32/x86_64-windows/libadvapi32.a \
   dlls/winecrt0/x86_64-windows/libwinecrt0.a libs/compiler-rt/x86_64-windows/libcompiler-rt.a \

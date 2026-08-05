@@ -83,5 +83,7 @@ done
 # Custom commands that aren't easy to integrate into the build system
 # need to be executed.
 make redist || true
-../wined3d.sh
+../wined3d.sh || true
+make redist || true
+../wined3d.sh || true
 make redist #again
