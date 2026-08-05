@@ -12,10 +12,10 @@ fi
 # Source: https://stackoverflow.com/a/77461235
 # The .dylib files are (currently) universal so this step should still work under Rosetta 2.
 CHROME_LIB_DIR="/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Libraries"
-if [[ ! -e /usr/local/lib/libEGL.dylib ]]; then
+if [[ -e /usr/local/lib/libEGL.dylib ]]; then
     if [[ -d "/Applications/Google Chrome.app/" ]] ; then
-        cp $CHROME_LIB_DIR/libGLESv2.dylib /usr/local/lib
-        cp $CHROME_LIB_DIR/libEGL.dylib /usr/local/lib
+        cp "$CHROME_LIB_DIR"/libGLESv2.dylib /usr/local/lib
+        cp "$CHROME_LIB_DIR"/libEGL.dylib /usr/local/lib
     else
         echo "Copy libEGL.dylib and libGLESv2.dylib from an application supplying them"
         echo "to /usr/local/lib. Google Chrome and other Chromium based browsers come"
