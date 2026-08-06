@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
+Date: Thu, 6 Aug 2026 07:05:18 +0300
+Subject: [PATCH 43/43] proton: use absolute symlinks
+
+The old behaviour creates symlinks relative to the location of 'proton' script starting with files/ which don't resolve on macOS.
+---
+ proton | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/proton b/proton
+index 18b4ec68..23497d43 100755
+--- a/proton
++++ b/proton
+@@ -818,7 +818,7 @@ class CompatData:
+                                                    '/lib64/wine/x86_64-unix', '/lib64/wine/x86_64-windows')):
+                 # wine builtin dll
+                 # make the destination an absolute symlink
+-                contents = os.path.normpath(os.path.join(os.path.dirname(src), contents))
++                contents = os.path.abspath(os.path.join(os.path.dirname(src), contents))
+             if dll_copy:
+                 try_copyfile(src, dst)
+             else:
+-- 
+2.50.1 (Apple Git-155)
+
