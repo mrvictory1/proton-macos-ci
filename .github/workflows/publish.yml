@@ -1,6 +1,9 @@
 name: publish
 run-name: Create release
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   publish:
     runs-on: macos-15-intel
