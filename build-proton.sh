@@ -87,4 +87,4 @@ make redist || true
 ../wined3d.sh || true
 make redist || true
 ../wined3d.sh || true
-make redist #again
+make redist # again
