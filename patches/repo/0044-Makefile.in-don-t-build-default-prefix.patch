@@ -1,25 +1,30 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
-Date: Fri, 7 Aug 2026 23:22:30 +0300
-Subject: [PATCH] Makefile.in: don't build default prefix
+Date: Sat, 8 Aug 2026 08:19:02 +0300
+Subject: [PATCH] Makefile.in: Don't build default prefix
 
+default_pfx fails on CI.
 ---
- Makefile.in | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index dfdc9a94..0aa35de6 100644
+index 12c87cb5..a16f9575 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -1363,7 +1363,7 @@ ifneq ($(findstring aarch64,$(unix_ARCHS)),)
- 	python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX_ARM64)) $(abspath $(DST_DIR)) 1
+@@ -1331,10 +1331,10 @@ default_pfx: wine gst_good gst_bad gst_libav gst_plugins_rs lsteamclient steamex
+ 	rm -rf $(abspath $(DIST_PREFIX))
+ 	rm -rf $(abspath $(DIST_PREFIX_ARM64))
+ ifneq ($(findstring x86_64,$(unix_ARCHS)),)
+-	python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX)) $(abspath $(DST_DIR)) 0
++	# python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX)) $(abspath $(DST_DIR)) 0
+ endif
+ ifneq ($(findstring aarch64,$(unix_ARCHS)),)
+-	python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX_ARM64)) $(abspath $(DST_DIR)) 1
++	# python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX_ARM64)) $(abspath $(DST_DIR)) 1
  endif
  
--all-dist: default_pfx
-+# all-dist: default_pfx
- 
- 
- ##
+ all-dist: default_pfx
 -- 
 2.50.1 (Apple Git-155)
 
