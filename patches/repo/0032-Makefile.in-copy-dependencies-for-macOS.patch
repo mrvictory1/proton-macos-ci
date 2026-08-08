@@ -4,14 +4,14 @@ Date: Thu, 30 Jul 2026 13:16:30 +0300
 Subject: [PATCH] Makefile.in: copy dependencies for macOS.
 
 ---
- Makefile.in | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ Makefile.in | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/Makefile.in b/Makefile.in
-index 12c87cb5..d4b9460b 100644
+index 12c87cb5..75282939 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -1321,6 +1321,25 @@ $(OVR_aarch64_DIST): $(SRCDIR)/openvr/bin/win64/openvr_api.dll | $(DST_DIR)
+@@ -1321,6 +1321,21 @@ $(OVR_aarch64_DIST): $(SRCDIR)/openvr/bin/win64/openvr_api.dll | $(DST_DIR)
  all-dist: $(OVR_aarch64_DIST)
  endif
  
@@ -22,11 +22,7 @@ index 12c87cb5..d4b9460b 100644
 +MACOS_DEPS_DIST := $(DST_DIR)/lib/wine/x86_64-unix/
 +BREW_LIB := /usr/local/lib
 +
-+MACOS_DEPS_DEPENDS = wine
-+
-+$(eval $(call create-rules-common,macos_deps,MACOS_DEPS,x86_64,unix))
-+
-+$(OBJ)/.macos_deps-x86_64-dist: $(OBJ)/.wine-x86_64-post-build
++$(OBJ)/.macos_deps-x86_64-dist: wine-x86_64-build
 +	cp -f $(BREW_LIB)/libfreetype.6.dylib $(MACOS_DEPS_DIST)
 +	cp -f $(BREW_LIB)/libMoltenVK.dylib $(MACOS_DEPS_DIST)
 +	cp -f $(BREW_LIB)/libgnutls.30.dylib $(MACOS_DEPS_DIST)
