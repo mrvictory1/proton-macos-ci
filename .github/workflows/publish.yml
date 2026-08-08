@@ -1,5 +1,7 @@
 name: publish
 run-name: Create release
+permissions:
+  contents: write
 env:
   GH_TOKEN: ${{ github.token }}
 on:
