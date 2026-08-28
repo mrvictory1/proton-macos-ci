@@ -11,11 +11,12 @@ diff --git a/configure.ac b/configure.ac
 index db3f479e316..7b116d7b9ac 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -2525,7 +2525,6 @@ WINE_CONFIG_MAKEFILE(dlls/advapi32/tests)
+@@ -2528,8 +2528,6 @@ WINE_CONFIG_MAKEFILE(dlls/advapi32/tests)
  WINE_CONFIG_MAKEFILE(dlls/advpack)
  WINE_CONFIG_MAKEFILE(dlls/advpack/tests)
  WINE_CONFIG_MAKEFILE(dlls/amsi)
 -WINE_CONFIG_MAKEFILE(dlls/amd_ags_x64)
+-WINE_CONFIG_MAKEFILE(dlls/amdxc64)
  WINE_CONFIG_MAKEFILE(dlls/amstream)
  WINE_CONFIG_MAKEFILE(dlls/amstream/tests)
  WINE_CONFIG_MAKEFILE(dlls/apisetschema)
