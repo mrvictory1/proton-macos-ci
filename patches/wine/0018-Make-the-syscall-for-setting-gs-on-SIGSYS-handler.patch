@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: mrvictory1 <108172910+mrvictory1@users.noreply.github.com>
+Date: Thu, 24 Sep 2026 20:44:28 +0300
+Subject: [PATCH] Make the syscall for setting %gs on SIGSYS handler
+
+Without this, the 'movq 0x320(%r13),%rdi' instruction in __wine_syscall_dispatcher fails because %r13 is 0. Prevents an early crash in THE FINALS (2073850).
+---
+ dlls/ntdll/unix/signal_x86_64.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/dlls/ntdll/unix/signal_x86_64.c b/dlls/ntdll/unix/signal_x86_64.c
+index bdbf439eb69..585f0edec77 100644
+--- a/dlls/ntdll/unix/signal_x86_64.c
++++ b/dlls/ntdll/unix/signal_x86_64.c
+@@ -3014,6 +3014,7 @@ static void sigsys_handler( int signal, siginfo_t *siginfo, void *sigcontext )
+         frame->restore_flags |= CONTEXT_CONTROL;
+     }
+     RIP_sig(ucontext) = (ULONG64)__wine_syscall_dispatcher_prolog_end_ptr;
++_thread_set_tsd_base( (uint64_t)NtCurrentTeb() );
+ }
+ #endif
+ 
+-- 
+2.50.1 (Apple Git-155)
+
